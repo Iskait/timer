@@ -1,0 +1,11 @@
+@import url(./header.scss);
+@import url(./laps.scss);
+@import url(./stopwatch.scss);
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+}
