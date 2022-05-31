@@ -17,7 +17,7 @@ function Footer() {
     <div className='footer'>
         <div className="footer__sections">
             <div onClick={(e) => handlePage(e)} className="footer__type">
-                <Link to='/' className={`footer__mode${page === '/' ? ' active' : ''}`}>stopwatch</Link>
+                <Link to='/timer' className={`footer__mode${page === '/' ? ' active' : ''}`}>stopwatch</Link>
                 <Link to='/countdown' className={`footer__mode${page === '/countdown' ? ' active' : ''}`}>timer</Link>
             </div>
         </div>
