@@ -1,0 +1,61 @@
+.timer {
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__countdown {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        height: 250px;
+        align-items: center;
+        width: 250px;
+        position: relative;
+    }
+    &__time-counter {
+        font-size: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .CircularProgressbar {
+        position: absolute;
+    }
+    .CircularProgressbar .CircularProgressbar-path {
+        stroke: #e66465;
+        transition: stroke-dashoffset 1s ease 0s;
+    }
+    &__buttons {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        &.active {
+            justify-content: center;
+        }
+    }
+
+    &__cancel, 
+    &__toggler,
+    &__restart {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all .2s;
+    }
+    &__toggler {
+        background-color: rgb(9, 205, 9);
+    }
+    &__cancel {
+        border: 2px solid rgb(152, 149, 149);
+        z-index: 1;
+    }
+    &__restart {
+        background-color: rgb(193, 239, 8);
+    }
+}

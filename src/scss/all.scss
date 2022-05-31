@@ -1,11 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 @import url(./header.scss);
 @import url(./laps.scss);
 @import url(./stopwatch.scss);
+@import url(./footer.scss);
+@import url(./clock.scss);
+@import url(./countdown.scss);
+@import url(./timesetter.scss);
+
+#root {
+    height: 100vh;
+}
 
 .wrapper {
-    min-height: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+.page {
+    flex: 1 1 auto;
 }

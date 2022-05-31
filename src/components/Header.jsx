@@ -2,10 +2,10 @@ import React from 'react';
 
 
 
-function Header() {
+function Header({type}) {
   return (
     <header className='stopwatch__header'>
-        STOPWATCH
+        {type}
     </header>
   )
 }
