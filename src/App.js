@@ -17,10 +17,10 @@ function App() {
   return ( 
     <Context.Provider value={{page, setPage}}>
     <div className="wrapper">
-      <Header type={page === '/timer/stopwatch' ? 'STOPWATCH'  : 'TIMER'} />
+      <Header type={page === '/timer/' ? 'STOPWATCH'  : 'TIMER'} />
       <main className="page">
       <Routes>
-        <Route path="/timer/stopwatch" element={<Main />}/>
+        <Route path="/timer/" element={<Main />}/>
         <Route path="/timer/countdown" element={<Timer />} />
       </Routes>
       </main>
