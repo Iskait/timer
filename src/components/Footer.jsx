@@ -23,11 +23,11 @@ function Footer() {
             <div
             ref={typeRef} 
             className="footer__type">
-                <Link to='/timer'
+                <Link to='/timer/'
                 onClick={() => dispatch(stopWatch())}
                 className="footer__mode">timer
                 </Link>
-                <Link to='/countdown'
+                <Link to='/countdown/'
                 onClick={() => dispatch(timer())}
                 className="footer__mode">countdown
                 </Link>

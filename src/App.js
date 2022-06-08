@@ -14,8 +14,8 @@ function App() {
       <Header />
       <main className="page">
       <Routes>
-        <Route path="/timer" element={<Main />}/>
-        <Route path="/countdown" element={<Timer />} />
+        <Route path="/timer/" element={<Main />}/>
+        <Route path="/countdown/" element={<Timer />} />
       </Routes>
       </main>
       <Footer />
