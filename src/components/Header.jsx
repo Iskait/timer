@@ -5,7 +5,7 @@ function Header() {
   const type = useSelector(headerSelector);
   return (
     <header className='stopwatch__header'>
-        {type}
+        {type.toUpperCase()}
     </header>
   )
 }

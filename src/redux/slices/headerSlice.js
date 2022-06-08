@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const headerSlcie = createSlice({
     name: 'header',
-    initialState: 'STOPWATCH',
+    initialState: window.location.pathname.slice(1),
     reducers: {
-        stopWatch: (state) => state = 'STOPWATCH',
-        timer: (state) => state = 'TIMER',
+        stopWatch: (state) => state = 'timer',
+        timer: (state) => state = 'countdown',
     }
 })
 

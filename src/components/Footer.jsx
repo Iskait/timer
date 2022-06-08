@@ -8,10 +8,10 @@ function Footer() {
   const type = useSelector(headerSelector);
   const typeRef = useRef();
   const dispatch = useDispatch();
-
+  console.log(type);
   useEffect(() => {
     [...typeRef.current.children].forEach(item => {
-      return item.textContent.toUpperCase() === type ? 
+      return item.textContent === type ? 
       item.classList.add('active') :
       item.classList.remove('active');
     })
@@ -25,11 +25,11 @@ function Footer() {
             className="footer__type">
                 <Link to='/timer'
                 onClick={() => dispatch(stopWatch())}
-                className="footer__mode">stopwatch
+                className="footer__mode">timer
                 </Link>
                 <Link to='/countdown'
                 onClick={() => dispatch(timer())}
-                className="footer__mode">timer
+                className="footer__mode">countdown
                 </Link>
             </div>
         </div>
