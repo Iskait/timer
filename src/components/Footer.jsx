@@ -1,27 +1,35 @@
-import React, { useContext, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { stopWatch, timer, headerSelector } from '../redux/slices/headerSlice';
 
-import { Context } from '../App.js'
 
 function Footer() {
-  const {page, setPage} = useContext(Context);
+  const type = useSelector(headerSelector);
+  const typeRef = useRef();
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    setPage(window.location.pathname);
-  }, [setPage])
-  
-  function handlePage (e) {
-      if (e.target.tagName !== 'A') return;
-      setPage(window.location.pathname);
-  }
+    [...typeRef.current.children].forEach(item => {
+      return item.textContent.toUpperCase() === type ? 
+      item.classList.add('active') :
+      item.classList.remove('active');
+    })
+  }, [type])
+
   return (
     <div className='footer'>
         <div className="footer__sections">
-            <div onClick={(e) => handlePage(e)} className="footer__type">
-                <Link to='/timer/'
-                className={`footer__mode${page === '/timer/' ? ' active' : ''}`}>stopwatch
+            <div
+            ref={typeRef} 
+            className="footer__type">
+                <Link to='/timer'
+                onClick={() => dispatch(stopWatch())}
+                className="footer__mode">stopwatch
                 </Link>
-                <Link to='/timer/countdown'
-                className={`footer__mode${page === '/timer/countdown' ? ' active' : ''}`}>timer
+                <Link to='/countdown'
+                onClick={() => dispatch(timer())}
+                className="footer__mode">timer
                 </Link>
             </div>
         </div>

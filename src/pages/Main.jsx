@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Stopwatch from "../components/Stopwatch";
 
 function Main() {

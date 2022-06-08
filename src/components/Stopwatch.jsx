@@ -1,47 +1,48 @@
-import React, { useState, useEffect } from "react";
-
+import { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { resetTime, tickTime, toggleTimer } from '../redux/slices/stopwatchSlice';
+import { setLaps, clearLaps } from '../redux/slices/lapsSlice';
 import Lap from "./Lap";
 
 import lead from "./helpers/lead";
 
 
 function Stopwatch() {
-  const [laps, setLaps] = useState([]);
-  const [time, setTime] = useState(0);
-  const [timerOn, setTimerOn] = useState(false);
-
+  const timerOn = useSelector(state=>state.stopwatch.timerOn);
+  const time = useSelector(state=>state.stopwatch.time);
+  const { laps }  = useSelector(state=>state);
+  const dispatch = useDispatch();
+  const seconds = Math.floor(time / 100);
+  const minutes = Math.floor(seconds / 60);
+  
   function handleLaps () {
     if (time) {
-      setLaps([{
+      dispatch(setLaps({
       minutes: lead(minutes % 60),
       seconds: lead(seconds % 60),
       miliseconds: lead(time % 100),
-      id: Date.now(),
       position: laps.length + 1,
-      }, ...laps]);
+      }))
     } else {
       return;
     }
   }
   function handleReset () {
-    setTime(0);
-    setLaps([]);
+    dispatch(resetTime());
+    dispatch(clearLaps());
   }
-
-  let seconds = Math.floor(time / 100);
-  let minutes = Math.floor(seconds / 60);
 
   useEffect(() => {
     let timer = null;
     if (timerOn) {
       timer = setInterval(() => {
-        setTime((time) => time + 1);
+        dispatch(tickTime());
       }, 10);
     } else {
       clearInterval(timer);
     }
     return () => clearTimeout(timer);
-  }, [timerOn]);
+  }, [timerOn, dispatch]);
 
   return (
     <div className="stopwatch__display">
@@ -54,9 +55,9 @@ function Stopwatch() {
           <button className="stopwatch__set-lap" onClick={handleLaps}>Lap</button>
         }
         {timerOn ?
-          <button className="stopwatch__stop" onClick={() => setTimerOn(!timerOn)}>Stop</button> :
-          <button className="stopwatch__start" onClick={() => setTimerOn(!timerOn)}>Start</button>
-        }
+          <button className="stopwatch__stop" onClick={() => dispatch(toggleTimer())}>Stop</button> :
+          <button className="stopwatch__start" onClick={() => dispatch(toggleTimer())}>Start</button>
+        } 
       </div>
       <div className='stopwatch__laps'>
       {laps.map(lap => {

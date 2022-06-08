@@ -1,8 +1,8 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
+import { headerSelector } from '../redux/slices/headerSlice';
 
-
-
-function Header({type}) {
+function Header() {
+  const type = useSelector(headerSelector);
   return (
     <header className='stopwatch__header'>
         {type}

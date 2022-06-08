@@ -1,25 +1,26 @@
-import React, {useState, useContext} from 'react';
-import { TimerContext } from '../pages/Timer';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setTimerCount, togglecountdownOn, setPercentage } from '../redux/slices/countdownSlice';
+import { toggleStart } from '../redux/slices/timesetterSlice';
 import Timesetter from './Timesetter';
 
 function Clock() {
-  const {setStart, setTimerCount} = useContext(TimerContext);
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0); 
+  const dispatch = useDispatch();
 
-  const states = {setHours, setMinutes, setSeconds}
-    
+  const { hours, minutes, seconds } = useSelector(state=>state.timesetter);
+
   function handleStart(e) {
       e.preventDefault();
-      setStart(start=>!start)
-      setTimerCount({hours, minutes, seconds})
+      dispatch(toggleStart());
+      dispatch(togglecountdownOn(true));
+      dispatch(setTimerCount({
+        seconds: +hours*3600 + +minutes * 60 + +seconds
+      }));
+      dispatch(setPercentage({percentage: 100}));
   }
   return (
     <form onSubmit={handleStart} className="timer__clock">
-        <Timesetter {...states} />
-        {(!!+hours || !!+minutes || !!+seconds ) && 
+        <Timesetter />
+        {(!!hours || !!minutes || !!seconds ) && 
         <input type="submit" value = "Start" className="timer__start" />}
     </form>
   )
